@@ -3,9 +3,9 @@ package com.keles.rest.webservices.restfulwebservices.user;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 @RestController
@@ -22,8 +22,14 @@ public class UserResource {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id) {
-        return service.findOne(id);
+    public User retrieveUser(@PathVariable int id) throws UserPrincipalNotFoundException {
+        User user = service.findOne(id);
+
+        if (user == null) {
+            throw new UserNotFoundException("id" + id);
+        }
+
+        return user;
     }
 
     @PostMapping("/users")
