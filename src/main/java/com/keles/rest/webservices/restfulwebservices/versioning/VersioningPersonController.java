@@ -9,4 +9,9 @@ public class VersioningPersonController {
     public PersonV1 getFirstVersionOfPerson() {
         return new PersonV1("Sponge Bob");
     }
+
+    @GetMapping(path = "/v2/person")
+    public PersonV2 getSecondVersionOfPerson() {
+        return new PersonV2(new Name("Patrick", "Star"));
+    }
 }
