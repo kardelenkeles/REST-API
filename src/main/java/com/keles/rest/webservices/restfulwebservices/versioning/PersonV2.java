@@ -9,8 +9,6 @@ public class PersonV2 {
 
     @Override
     public String toString() {
-        return "PersonV2{" +
-                "name='" + name + '\'' +
-                '}';
+        return "PersonV2 [name=" + name + "]";
     }
 }
