@@ -1,21 +1,12 @@
 package com.keles.rest.webservices.restfulwebservices.versioning;
 
 public class PersonV1 {
-    private String name;
-
-    public PersonV1(String name) {
-        super();
-        this.name = name;
-    }
-
-    public String getName() {
+    private Name name;
+    public Name getName() {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "PersonV1{" +
-                "name='" + name + '\'' +
-                '}';
+    public void setName(Name name) {
+        this.name = name;
     }
 }

@@ -20,6 +20,7 @@ public class Controller {
     @GetMapping(path = "/inter")
     public String internationalized() {
         Locale locale = LocaleContextHolder.getLocale();
+        System.out.println(locale);
         return messageSource.getMessage("good.morning.message", null,
                 "Default Message", locale);
     }

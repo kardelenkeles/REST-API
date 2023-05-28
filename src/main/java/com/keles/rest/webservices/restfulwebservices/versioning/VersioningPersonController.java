@@ -5,23 +5,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class VersioningPersonController {
+    private Name name;
+
+    public VersioningPersonController() {
+        name = new Name();
+        name.setFirstName("Kardelen");
+        name.setLastName("Keleş");
+    }
     @GetMapping(path = "/v1/person")
     public PersonV1 getFirstVersionOfPerson() {
-        return new PersonV1("Sponge Bob");
+        Name name = new Name();
+        name.setFirstName("Sponge");
+        name.setLastName("Bob");
+
+        PersonV1 person = new PersonV1();
+        person.setName(name);
+        return person;
     }
 
     @GetMapping(path = "/v2/person")
     public PersonV2 getSecondVersionOfPerson() {
-        return new PersonV2(new Name("Patrick", "Star"));
+        Name name = new Name();
+        name.setFirstName("Patrick");
+        name.setLastName("Star");
+
+        PersonV2 person = new PersonV2();
+        person.setName(name);
+        return person;
     }
 
-    @GetMapping(path = "/person", params = "version=1 ")
-    public PersonV1 getFirstVersionOfPersonRequestParameter() {
-        return new PersonV1("Sponge Bob");
-    }
 
-    @GetMapping(path = "/person", params = "version=2")
-    public PersonV2 getSecondVersionOfPersonRequestParameter() {
-        return new PersonV2(new Name("Patrick", "Star"));
-    }
 }
